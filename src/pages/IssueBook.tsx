@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "../components/sidebar";
 import Navbar from "../components/navbar";
 import TableData from "../components/TableData";
-import { DownOutlined } from "@ant-design/icons";
+import Dropper from "../../public/Dropper.png"
 
 const IssueBookPage: React.FC = () => {
   return (
@@ -64,7 +64,7 @@ const IssueBookPage: React.FC = () => {
                 }}
               />
               <span style={{ color: "blue", fontWeight: 600 }}>TIA</span>
-              <DownOutlined style={{ color: "blue", fontSize: "12px", marginLeft: 8 }} />
+              <img src={Dropper} alt="Dropdown" style={{marginLeft: 10, height: 10}} />
             </div>
           </div>
 
