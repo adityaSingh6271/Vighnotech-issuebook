@@ -1,15 +1,8 @@
-
-
 import IssueBookPage from "./pages/IssueBook";
+import "./App.css"
 
 function App() {
-  return (
-    <div style={{ display: "flex" }}>
-      <div style={{ flex: 1 }}>
-        <IssueBookPage />
-      </div>
-    </div>
-  );
+  return <IssueBookPage />;
 }
 
 export default App;

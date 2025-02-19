@@ -1,21 +1,23 @@
 import React from "react";
 import { Table } from "antd";
+import arrowLeft from "../../public/arrow-left.png";
+import arrowRight from "../../public/arrow-right.png";
+import editIcon from "../../public/editicon.png";
 
-// Define your Book interface
-export interface Book {
-  book_id: string;
+interface BookRecord {
+  ID: string;
   book_name: string;
-  department: string;
-  book_author: string;
-  date_of_borrowing: string;
+  category: string;
+  in_use: string;
+  available: string;
+  number_of_books: string;
 }
 
-// Define the columns using the interface keys
 const columns = [
   {
-    title: "Book ID",
-    dataIndex: "book_id",
-    key: "book_id",
+    title: "ID",
+    dataIndex: "ID",
+    key: "ID",
   },
   {
     title: "Book Name",
@@ -23,76 +25,207 @@ const columns = [
     key: "book_name",
   },
   {
-    title: "Department",
-    dataIndex: "department",
-    key: "department",
+    title: "Category",
+    dataIndex: "category",
+    key: "category",
   },
   {
-    title: "Book Author",
-    dataIndex: "book_author",
-    key: "book_author",
+    title: "In-use",
+    dataIndex: "in_use",
+    key: "in_use",
   },
   {
-    title: "Date of Borrowing",
-    dataIndex: "date_of_borrowing",
-    key: "date_of_borrowing",
+    title: "Available",
+    dataIndex: "available",
+    key: "available",
   },
   {
-    title: "Actions",
-    key: "actions",
-    render: () => <a>Edit</a>,
+    title: "Number of Books",
+    dataIndex: "number_of_books",
+    key: "number_of_books",
+    // Only move the edit icon to the far right
+    render: (text: string) => (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between", // text on left, icon on right
+          paddingRight: 16, // spacing from the right edge
+        }}
+      >
+        <span>{text}</span>
+        <img
+          src={editIcon}
+          alt="Edit"
+          style={{ cursor: "pointer", width: 16, height: 16 }}
+        />
+      </div>
+    ),
   },
 ];
 
-// Create a sample dataSource using the Book interface
-const dataSource: Book[] = [
+const dataSource: BookRecord[] = [
   {
-    book_id: "1",
-    book_name: "The Great Gatsby",
-    department: "Literature",
-    book_author: "F. Scott Fitzgerald",
-    date_of_borrowing: "2023-03-01",
+    ID: "40001",
+    book_name: "Bhumi Jain",
+    category: "Electronics",
+    in_use: "Computer",
+    available: "12-12-25",
+    number_of_books: "10",
   },
   {
-    book_id: "2",
-    book_name: "1984",
-    department: "Fiction",
-    book_author: "George Orwell",
-    date_of_borrowing: "2023-03-05",
+    ID: "40002",
+    book_name: "Bhumi Jain",
+    category: "Electronics",
+    in_use: "Computer",
+    available: "12-12-25",
+    number_of_books: "10",
   },
   {
-    book_id: "3",
-    book_name: "Clean Code",
-    department: "Programming",
-    book_author: "Robert C. Martin",
-    date_of_borrowing: "2023-03-10",
+    ID: "40003",
+    book_name: "Bhumi Jain",
+    category: "Electronics",
+    in_use: "Computer",
+    available: "12-12-25",
+    number_of_books: "10",
+  },
+  {
+    ID: "40004",
+    book_name: "Bhumi Jain",
+    category: "Electronics",
+    in_use: "Computer",
+    available: "12-12-25",
+    number_of_books: "10",
+  },
+  {
+    ID: "40005",
+    book_name: "Bhumi Jain",
+    category: "Electronics",
+    in_use: "Computer",
+    available: "12-12-25",
+    number_of_books: "10",
+  },
+  {
+    ID: "40006",
+    book_name: "Bhumi Jain",
+    category: "Electronics",
+    in_use: "Computer",
+    available: "12-12-25",
+    number_of_books: "10",
   },
 ];
 
 const TableData: React.FC = () => {
   return (
-    <div style={{ margin: 20 }}>
+    <div
+      style={{
+        marginTop: 20,
+        border: "1px solid #E9EAEB",
+        borderRadius: 12,
+        boxShadow: "0 1px 3px 0 #0A0D120F",
+        overflow: "hidden",
+        width: "95%",
+        height: "395px",
+        marginLeft: "20px",
+        position: "relative",
+      }}
+    >
+      {/* Inline style override for pagination layout */}
+      <style>
+        {`
+          /* Center the entire pagination, but allow absolute positioning of Prev/Next */
+          .custom-pagination {
+            position: relative;
+            text-align: center; 
+            display: block !important;
+            margin: 16px 0 !important;
+          }
+
+          /* Move the "Previous" button to the far left */
+          .custom-pagination .ant-pagination-prev {
+            position: absolute;
+            left: 0;
+          }
+
+          /* Move the "Next" button to the far right */
+          .custom-pagination .ant-pagination-next {
+            position: absolute;
+            right: 0;
+          }
+        `}
+      </style>
+
       <Table
+        style={{ width: "100%", margin: 0 }}
         dataSource={dataSource}
         columns={columns}
-        // Customize pagination here
+        rowKey="ID"
         pagination={{
-          // Force multiple pages to appear for demonstration
-          total: 50,             // Total number of items
-          pageSize: 5,           // Items per page
-          defaultCurrent: 1,     // Starting page
-          // Replace default arrows with text
+          position: ["bottomCenter"],
+          // Apply our custom class to override the layout
+          className: "custom-pagination",
+          total: 50,
+          pageSize: 5,
+          defaultCurrent: 1,
+          // Keep the same itemRender for styling the buttons
           itemRender: (page, type, originalElement) => {
             if (type === "prev") {
-              return <a>Previous</a>;
+              return (
+                <a
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
+                    border: "1px solid #D1D5DB",
+                    borderRadius: "8px",
+                    padding: "4px 12px",
+                    color: "#414651",
+                    fontWeight: 500,
+                    width: "115px",
+                    height: "36px",
+                    justifyContent: "center",
+                    marginLeft: '20px'
+                  }}
+                >
+                  <img
+                    src={arrowLeft}
+                    alt="arrowLeft"
+                    style={{ width: 16, height: 16 }}
+                  />
+                  Previous
+                </a>
+              );
             }
             if (type === "next") {
-              return <a>Next</a>;
+              return (
+                <a
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
+                    border: "1px solid #D1D5DB",
+                    borderRadius: "8px",
+                    padding: "4px 12px",
+                    color: "#414651",
+                    fontWeight: 500,
+                    width: "88px",
+                    height: "36px",
+                    justifyContent: "center",
+                    marginRight: '20px'
+                  }}
+                >
+                  Next
+                  <img
+                    src={arrowRight}
+                    alt="arrowRight"
+                    style={{ width: 16, height: 16 }}
+                  />
+                </a>
+              );
             }
             return originalElement;
           },
         }}
-        rowKey="book_id"
       />
     </div>
   );

@@ -19,7 +19,6 @@ const IssueBookPage: React.FC = () => {
         <div
           style={{
             padding: "0 24px",
-            minHeight: "100vh",
             fontFamily: "Josefin Sans, sans-serif",
           }}
         >
@@ -34,8 +33,8 @@ const IssueBookPage: React.FC = () => {
           >
             {/* Left Side */}
             <div>
-              <h1 style={{ margin: 0 }}>Issue Book</h1>
-              <p style={{ color: "#808080", marginTop: 10 }}>Tanvir Chauhan</p>
+              <h1 style={{ marginTop: 10, fontWeight: 700 }}>Issue Book</h1>
+              <p style={{ color: "#808080", marginTop: 10, fontWeight: 500, fontSize:'18px' }}>Tanvir Chauhan</p>
             </div>
 
             {/* Right Side (TIA Box) */}
@@ -43,27 +42,29 @@ const IssueBookPage: React.FC = () => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                height: 30,
-                width: 90,
+                height: 55,
+                width: 143,
+                marginRight:15,
+                marginTop: '10px',
                 border: "1px solid #1E40AF",
                 borderRadius: 10,
-                padding: "5px 10px",
+                padding: "5px 10px 5px 8px",
               }}
             >
               <img
                 src="http://thakureducation.org/images/logo.png"
                 alt="logo"
-                style={{ width: "24px", height: "24px" }}
+                style={{ width: "45px", height: "45px" }}
               />
               <div
                 style={{
                   width: "1px",
                   height: "24px",
-                  backgroundColor: "blue",
-                  margin: "0 8px",
+                  backgroundColor: "#1F2937",
+                  marginLeft: '15px' 
                 }}
               />
-              <span style={{ color: "blue", fontWeight: 600 }}>TIA</span>
+              <span style={{ color: "#1E40AF", fontWeight: 600, fontSize: '16px', marginLeft: '15px', marginTop: '4px'}}>TIA</span>
               <img src={Dropper} alt="Dropdown" style={{marginLeft: 10, height: 10}} />
             </div>
           </div>

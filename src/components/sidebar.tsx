@@ -41,7 +41,9 @@ const Sidebar: React.FC = () => {
   return (
     <div
       style={{
-        width: 180,
+        height: "100vh",
+        width:'15%',
+        boxShadow: '0 4px 4px 0 #00000040',
         borderRight: "1px solid #d9d9d9",
         display: "flex",
         flexDirection: "column",
@@ -53,11 +55,11 @@ const Sidebar: React.FC = () => {
       </div>
       <Menu mode="inline" defaultSelectedKeys={["3"]} style={{ borderRight: "none", flex: 1 }} items={menuItems} />
       <div style={{ padding: "16px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12, cursor:"pointer" }}>
           <span>Contact</span>
           <img src={TeleIcon} alt="telephone" style={{ width: 20, height: 20 }} />
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", cursor:"pointer" }}>
           <span>Sign out</span>
           <img src={LogoutIcon} alt="logout" style={{ width: 20, height: 20 }} />
         </div>
